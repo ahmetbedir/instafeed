@@ -30,8 +30,6 @@ echo $feed->getLocationName();
 // Get Feed Caption
 echo $feed->getCaption();
 
-// Check Feed Is Video. Return boolean
+// Check Feed Is Video. Return to boolean
 echo $feed->isVideo();
-
-
 ```
