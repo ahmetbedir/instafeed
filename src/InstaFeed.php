@@ -21,12 +21,12 @@ class InstaFeed
         $this->username = $username;
     }
 
-    public function getMediaList()
+    public function getFeedList()
     {
-        return $this->prepareMediaList();
+        return $this->prepareFeedList();
     }
 
-    private function prepareMediaList()
+    private function prepareFeedList()
     {
         $this->userData = $this->getUserData();
 
@@ -39,7 +39,7 @@ class InstaFeed
         unset($this->userData);
 
         $imageList = array_map(function ($media) {
-            return new InstaImage($media['node']);
+            return new Feed($media['node']);
         }, $mediaLists);
 
         unset($mediaLists);
