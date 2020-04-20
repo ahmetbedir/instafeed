@@ -1,0 +1,20 @@
+{
+    "name": "ahmetbedir/instafeed",
+    "description": "A package that you can quickly take and use your instagram images. Just give username!",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ahmet Bedir",
+            "email": "ahmetbedir16@gmail.com",
+            "homepage": "https://github.com/ahmetbedir",
+            "role": "Software Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Ahmetbedir\\": "src/"
+        }
+    }
+}
