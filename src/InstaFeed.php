@@ -19,11 +19,17 @@ class InstaFeed
     public function __construct(string $username)
     {
         $this->username = $username;
+        $this->feedList = $this->prepareFeedList();
     }
 
     public function getFeedList()
     {
-        return $this->prepareFeedList();
+        return $this->feedList;
+    }
+
+    public function getFirstFeed()
+    {
+        return current($this->feedList);
     }
 
     private function prepareFeedList()

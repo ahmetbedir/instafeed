@@ -3,33 +3,33 @@
 ---
 ## Basic Usage
 ```php
-$feeds = new Ahmetbedir\InstaFeed('ahmetbdr43');
+$instafeed = new Ahmetbedir\InstaFeed('ahmetbdr43');
 
-$allFeeds = $feed->getFeedList(); // Get All Feeds By Array
+$allFeeds = $instafeed->getFeedList(); // Get All Feeds By Feed Object
 
-$feed = $allFeeds[0];
+$firstFeed = $instafeed->getFirstFeed();
 
 // Get Feed Url
-echo $feed->getDisplayUrl();
+echo $firstFeed->getDisplayUrl();
 
 // Get Thumnail Feed Url
-echo $feed->getThumbnail();
+echo $firstFeed->getThumbnail();
 
 // Get Feed Dimensions by Array e.g ["width" => 1333, "height" => 750]
-echo $feed->getDimensions();
+echo $firstFeed->getDimensions();
 
 // Get Feed Like Count
-echo $feed->getLikeCount();
+echo $firstFeed->getLikeCount();
 
 // Get Feed Comment Count
-echo $feed->getCommentCount();
+echo $firstFeed->getCommentCount();
 
 // Get Feed Location Name
-echo $feed->getLocationName();
+echo $firstFeed->getLocationName();
 
 // Get Feed Caption
-echo $feed->getCaption();
+echo $firstFeed->getCaption();
 
 // Check Feed Is Video. Return to boolean
-echo $feed->isVideo();
+echo $firstFeed->isVideo();
 ```

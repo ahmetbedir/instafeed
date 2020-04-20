@@ -4,7 +4,12 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Ahmetbedir\InstaFeed;
 
-$feed = new InstaFeed('ahmetbdr43');
+$instafeed = new InstaFeed('ahmetbdr43');
+
+echo '<pre>';
+var_dump($instafeed->getFirstFeed());
+
+die;
 
 echo '<div style="display:flex; flex-flow: row wrap;justify-content: space-around;">';
 foreach ($feed->getFeedList() as $feed) {
