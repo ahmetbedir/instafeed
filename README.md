@@ -3,33 +3,79 @@
 ---
 ## Basic Usage
 ```php
-$instafeed = new Ahmetbedir\InstaFeed('ahmetbdr43');
+$username = 'ahmetbedir';
 
-$allFeeds = $instafeed->getFeedList(); // Get All Feeds By Feed Object
+$instafeed = new Ahmetbedir\InstaFeed($username);
+```
 
+## User Info Available Methods
+```php
+$userInfo  = $instafeed->getUserInfo();
+
+
+// Get Username
+$userInfo->username();
+
+// Get Full Name
+$userInfo->fullName();
+
+// Get Biography
+$userInfo->bio();
+
+// Get Followes Count (int)
+$userInfo->followersCount();
+
+// Get Follow Count (int)
+$userInfo->followCount();
+
+// Get Account Category
+$userInfo->category();
+
+// Get Account Private Status  (boolean)
+$userInfo->isPrivate();
+
+// Get Account Verified Status (boolean)
+$userInfo->isVerified();
+
+// Get Account Business Status (boolean)
+$userInfo->isBusinessAccount();
+
+// Get Account Joined Recently Status (boolean)
+$userInfo->isJoinedRecently();
+
+// Get Account Connected Facebook Page Status (boolean)
+$userInfo->isConnectedFbPage();
+```
+
+## User Feed Available Methods
+```php
+// Get All Feeds By Feed Object
+$allFeeds = $instafeed->getFeedList();
+
+// Get First Feed
 $firstFeed = $instafeed->getFirstFeed();
 
 // Get Feed Url
-echo $firstFeed->getDisplayUrl();
+$firstFeed->getDisplayUrl();
 
 // Get Thumnail Feed Url
-echo $firstFeed->getThumbnail();
+$firstFeed->getThumbnail();
 
 // Get Feed Dimensions by Array e.g ["width" => 1333, "height" => 750]
-echo $firstFeed->getDimensions();
+$firstFeed->getDimensions();
 
 // Get Feed Like Count
-echo $firstFeed->getLikeCount();
+$firstFeed->getLikeCount();
 
 // Get Feed Comment Count
-echo $firstFeed->getCommentCount();
+$firstFeed->getCommentCount();
 
 // Get Feed Location Name
-echo $firstFeed->getLocationName();
+$firstFeed->getLocationName();
 
 // Get Feed Caption
-echo $firstFeed->getCaption();
+$firstFeed->getCaption();
 
-// Check Feed Is Video. Return to boolean
-echo $firstFeed->isVideo();
+// Get Feed Video Status (Boolean)
+$firstFeed->isVideo();
 ```
