@@ -6,25 +6,62 @@ use Throwable;
 
 class InstaFeed
 {
+    /**
+     * Intagram Url
+     *
+     * @var string
+     */
     private $url = 'https://www.instagram.com/';
+
+    /**
+     * Intagram Username
+     *
+     * @var string
+     */
     private $username;
 
     /**
-     * User Data
+     * User Info
      *
      * @var array
      */
-    private $userData = array();
+    private $userInfo = array();
 
+    /**
+     * Init InstaFeed
+     *
+     * @param string $username
+     */
     public function __construct(string $username)
     {
         $this->username = $username;
+
+        $this->userData = $this->prepareUserData();
         $this->feedList = $this->prepareFeedList();
+        $this->userInfo = $this->prepareUserInfo();
+
+        unset($this->userData);
+    }
+
+    public function prepareUserData()
+    {
+        $userData = $this->getUserData();
+
+        if (!$this->checkUserData($userData)) {
+            throw new Exception("There was a problem accessing or processing the data!");
+        }
+
+        return $userData;
     }
 
     public function getFeedList()
     {
         return $this->feedList;
+    }
+
+    public function getUserInfo()
+    {
+        return $this->userInfo;
     }
 
     public function getFirstFeed()
@@ -34,15 +71,7 @@ class InstaFeed
 
     private function prepareFeedList()
     {
-        $this->userData = $this->getUserData();
-
-        if (!$this->checkUsableFeed()) {
-            throw new Exception("Error Processing Request", 1);
-        }
-
         $mediaLists = $this->userData['graphql']['user']['edge_owner_to_timeline_media']['edges'];
-
-        unset($this->userData);
 
         $imageList = array_map(function ($media) {
             return new Feed($media['node']);
@@ -51,6 +80,22 @@ class InstaFeed
         unset($mediaLists);
 
         return $imageList;
+    }
+
+    private function prepareUserInfo()
+    {
+        $userData = $this->userData['graphql']['user'];
+
+        unset(
+            $userData['edge_felix_video_timeline'],
+            $userData['edge_owner_to_timeline_media'],
+            $userData['edge_saved_media'],
+            $userData['edge_media_collections'],
+            $userData['edge_mutual_followed_by'],
+            $userData['edge_mutual_followed_by']
+        );
+
+        return new User($userData);
     }
 
     private function getUserData()
@@ -74,7 +119,7 @@ class InstaFeed
 
             return json_decode($response, true);
         } catch (Throwable $th) {
-            throw new Exception($th, 1);
+            throw new Exception($th);
         }
     }
 
@@ -83,8 +128,12 @@ class InstaFeed
         return $this->url . $this->username . '/?__a=1';
     }
 
-    private function checkUsableFeed()
+    private function checkUserData($userData)
     {
-        return (isset($this->userData['graphql']['user']['edge_owner_to_timeline_media']['edges']) && count($this->userData['graphql']['user']['edge_owner_to_timeline_media']['edges']));
+        return (
+            isset($userData['graphql']['user']) &&
+            isset($userData['graphql']['user']['edge_owner_to_timeline_media']['edges']) &&
+            count($userData['graphql']['user']['edge_owner_to_timeline_media']['edges'])
+        );
     }
 }
