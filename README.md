@@ -1,6 +1,8 @@
 # InstaFeed
 ### A package that you can quickly take and use your instagram images. Just give username!
 ---
+![PHP Composer](https://github.com/ahmetbedir/instafeed/workflows/PHP%20Composer/badge.svg)
+
 ## Basic Usage
 ```php
 $username = 'ahmetbedir';
