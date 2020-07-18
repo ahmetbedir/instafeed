@@ -20,8 +20,6 @@ echo "Business Act.:\t", ($userInfo->isBusinessAccount() ? 'Yes' : 'No') . PHP_E
 echo "New Account:\t", ($userInfo->isJoinedRecently() ? 'Yes Joined Recently' : 'No') . PHP_EOL;
 echo "FB Page:\t", ($userInfo->isConnectedFbPage() ? 'Connected' : 'Not Connected') . PHP_EOL;
 
-echo "";
-
 echo '<hr>';
 echo '<div style="display:flex; flex-flow: row wrap;justify-content: space-around;">';
 foreach ($instafeed->getFeedList() as $feed) {
